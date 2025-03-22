@@ -16,6 +16,10 @@
       {
         "command": "securecommit.secureCommit",
         "title": "SecureCommit"
+      },
+      {
+        "command": "securecommit.scanWorkspace",
+        "title": "Scan Workspace"
       }
     ]
   },
