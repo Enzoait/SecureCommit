@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### To Be Added
 
+- Faire en sorte qu'a la fin du Scan Workspace, un fichier contenant le path de tous les fichiers flaggés soit généré
 - Files that are in `.gitignore` detection
 - Jsdoc
 - `README.md` redaction
@@ -21,6 +22,24 @@ color: new vscode.ThemeColor("errorForeground")
 ```
 
 ### To Be Removed
+
+- 
+
+## [0.0.5] - 2023-03-23
+
+### Added
+
+- Added folder compatibility
+
+### Fixed
+
+- 
+
+### Changed
+
+- Changed tooltip message
+
+### Removed
 
 - 
 

@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
+import { getFolders } from "../funcs/getFolders";
 
 export class FileDecorationProvider implements vscode.FileDecorationProvider {
   private _onDidChangeFileDecorations = new vscode.EventEmitter<
@@ -16,31 +17,40 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
       return {
         badge: "⚠️",
         color: new vscode.ThemeColor("errorForeground"),
-        tooltip: "Secure Commit : This file contains sensitive information.",
+        tooltip:
+          "Secure Commit : This file contains sensitive information. Consider checking for any secrets that shouldn't be committed.",
       };
     }
     return undefined;
   }
 
   refresh(
-    files : vscode.Uri[]
+    files: vscode.Uri[],
+    workspaceRoot: string,
+    activeWorkspacePath: string
   ): void {
+    const previousFlaggedFiles = new Set(this._flaggedFiles); // Sauvegarde l'ancien état
+    this._flaggedFiles.clear();
 
-    var sensitiveFiles : number = 0;
+    let sensitiveFiles = 0;
+    let flaggedFoldersList = new Set<vscode.Uri>();
 
     for (const file of files) {
-      const content = fs.readFileSync(file.fsPath, "utf-8");
-
       try {
-        console.log(`File: ${file.fsPath}`);
-        console.log(`Content:\n${content.substring(0, 200)}`);
+        const content = fs.readFileSync(file.fsPath, "utf-8");
 
         if (content.includes("secure-commit")) {
           this._flaggedFiles.add(file.fsPath);
+          flaggedFoldersList = getFolders(
+            file.fsPath,
+            workspaceRoot,
+            activeWorkspacePath
+          );
+
+          for (let folder of flaggedFoldersList) {
+            this._flaggedFiles.add(folder.fsPath);
+          }
           sensitiveFiles++;
-        }
-        else if (this._flaggedFiles.has(file.fsPath)) {
-          this._flaggedFiles.delete(file.fsPath);
         }
       } catch (error) {
         console.error(`Error reading file ${file.fsPath}:`, error);
@@ -57,6 +67,22 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
       );
     }
 
-    this._onDidChangeFileDecorations.fire(files);
+    // Récupèration des fichiers qui n'ont plus "secure-commit"
+    const removedFiles = new Set(
+      [...previousFlaggedFiles].filter((f) => !this._flaggedFiles.has(f))
+    );
+
+    // Les URI a rafraichir
+    const urisToRefresh = new Set<vscode.Uri>();
+
+    this._flaggedFiles.forEach((filePath) => {
+      urisToRefresh.add(vscode.Uri.file(filePath));
+    });
+
+    removedFiles.forEach((filePath) => {
+      urisToRefresh.add(vscode.Uri.file(filePath));
+    });
+
+    this._onDidChangeFileDecorations.fire(Array.from(urisToRefresh));
   }
 }

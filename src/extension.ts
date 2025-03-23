@@ -25,12 +25,17 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
 
+      const activeWorkspacePath : string = workspaceFolders[0].uri.fsPath;
+      const workspaceRoot : string = activeWorkspacePath.split("\\").reverse()[0]
+
+      console.log(`Root : ${workspaceRoot}`);
+
       const files: vscode.Uri[] = await vscode.workspace.findFiles(
         `**/*.{${fileExtensions}}`,
         "**/node_modules/**"
       );
 
-      provider.refresh(files);
+      provider.refresh(files, workspaceRoot, activeWorkspacePath);
     }
   );
 
