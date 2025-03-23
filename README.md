@@ -1,6 +1,14 @@
-# securecommit README
+# SecureCommit
 
 This is the README for your extension "securecommit". After writing up a brief description, we recommend including the following sections.
+
+## TODO
+
+- Faire en sorte que les fichiers présents dans gitignore ne soient pas flaggés, même si ils contiennent le texte "secure-commit" (v0.2)
+- Rédiger la jsdoc des méthodes
+- Rédiger le README
+- Sortir la version 1.0
+- Ajouter plus de types de fichiers supportés (v1.1)
 
 ## Features
 

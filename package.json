@@ -15,11 +15,11 @@
     "commands": [
       {
         "command": "securecommit.secureCommit",
-        "title": "SecureCommit"
+        "title": "SecureCommit : Version"
       },
       {
         "command": "securecommit.scanWorkspace",
-        "title": "Scan Workspace"
+        "title": "SecureCommit : Scan Workspace"
       }
     ]
   },
