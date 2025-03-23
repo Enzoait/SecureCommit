@@ -5,6 +5,10 @@ This is the README for your extension "securecommit". After writing up a brief d
 ## TODO
 
 - Faire en sorte que les fichiers présents dans gitignore ne soient pas flaggés, même si ils contiennent le texte "secure-commit" (v0.2)
+- Eventuellement chercher d'autres couleurs pour les fichiers que :
+```ts
+color: new vscode.ThemeColor("errorForeground")
+```
 - Rédiger la jsdoc des méthodes
 - Rédiger le README
 - Sortir la version 1.0
