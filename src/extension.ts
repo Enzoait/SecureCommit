@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { FileDecorationProvider } from "./providers/FileDecorationProvider";
+import { fileExtensions } from "./constants/FileConstants";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('"securecommit" is now active!');
@@ -24,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       const files: vscode.Uri[] = await vscode.workspace.findFiles(
-        "**/*.{env,txt,c,cpp,cc,h,rs,go,java,kt,kts,scala,cs,py,rb,php,pl,pm,sh,js,mjs,ts,dart,ex,exs,erl,beam,hs,clj,cljs,cljc,fs,fsi,fsx}",
+        `**/*.{${fileExtensions}}`,
         "**/node_modules/**"
       );
 
