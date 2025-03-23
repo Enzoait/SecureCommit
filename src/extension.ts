@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import packageJson from "../package.json";
 import { FileDecorationProvider } from "./providers/FileDecorationProvider";
 import { fileExtensions } from "./constants/FileConstants";
 
@@ -37,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
     "securecommit.secureCommit",
     () => {
       vscode.window.showInformationMessage(
-        "Secure Commit version : 0.1"
+        `Secure Commit version : ${packageJson.version}`
       );
     }
   );
