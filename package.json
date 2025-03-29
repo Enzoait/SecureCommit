@@ -25,7 +25,7 @@
     "colors": [
       {
         "id": "securecommit.customPurple",
-        "description": "Couleur violette pour la décoration des fichiers.",
+        "description": "Purple color for file decoration.",
         "defaults": {
           "dark": "#b15efa",
           "light": "#a020f0",
