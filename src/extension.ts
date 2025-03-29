@@ -2,6 +2,8 @@ import * as vscode from "vscode";
 import packageJson from "../package.json";
 import { FileDecorationProvider } from "./providers/FileDecorationProvider";
 import { fileExtensions } from "./constants/FileConstants";
+import { getWorkspaceFolders } from "./funcs/getWorkspacefolders";
+import { writeFlaggedFilesPathsInSummaryFile } from "./funcs/writeFlaggedFilesPathsInSummaryFile";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('"securecommit" is now active!');
@@ -10,13 +12,9 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.window.registerFileDecorationProvider(provider);
 
   const workspaceFolders: readonly vscode.WorkspaceFolder[] | undefined =
-    vscode.workspace.workspaceFolders;
-  if (workspaceFolders == undefined) {
-    vscode.window.showInformationMessage(
-      "No workspace found. You need to open a folder to use SecureCommit."
-    );
-    return;
-  }
+    getWorkspaceFolders();
+
+  if (workspaceFolders == undefined) return;
 
   const activeWorkspacePath: string = workspaceFolders[0].uri.fsPath;
 
@@ -37,8 +35,8 @@ export function activate(context: vscode.ExtensionContext) {
         "**/node_modules/**"
       );
 
-      provider.refresh(files, workspaceRoot, activeWorkspacePath);
-
+      const flaggedFiles = provider.refreshAndGetFlaggedFiles(files, workspaceRoot, activeWorkspacePath);
+      writeFlaggedFilesPathsInSummaryFile(flaggedFiles, workspaceFolders)
     }
   );
 
@@ -48,17 +46,6 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage(
         `Secure Commit version : ${packageJson.version}`
       );
-
-      console.log("TEST TEST : ", workspaceFolders[0].uri.toString());
-
-      const summaryFileUri : vscode.Uri = vscode.Uri.parse(`${workspaceFolders[0].uri.toString()}/SECURE_COMMIT_FLAGGED_FILES.txt`);
-
-      const text = "salut test 123";
-      const content: Uint8Array = new TextEncoder().encode(text);
-
-      console.log("URIIII", summaryFileUri.toString());
-      
-      vscode.workspace.fs.writeFile(summaryFileUri, content);
     }
   );
 
