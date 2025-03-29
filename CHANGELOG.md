@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to Secure Commit will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,19 +9,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### To Be Added
 
-- Faire en sorte qu'a la fin du Scan Workspace, un fichier contenant le path de tous les fichiers flaggés soit généré
 - Files that are in `.gitignore` detection
 - Jsdoc
 - `README.md` redaction
+- Files without extension compatibility (after 1.0.0 release)
 
 ### To Be Changed
 
-- Change color for detected files
-```ts
-color: new vscode.ThemeColor("errorForeground")
-```
+- 
 
 ### To Be Removed
+
+- 
+
+## [0.5.0] - 2023-03-29
+
+### Added
+
+- Added summary file generation
+
+### Fixed
+
+- 
+
+### Changed
+
+- Changed color for detected files
+```ts
+color: new vscode.ThemeColor("securecommit.customPurple")
+```
+- Updated warning message for flagged files
+
+### Removed
 
 - 
 

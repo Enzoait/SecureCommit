@@ -2,7 +2,7 @@
   "name": "securecommit",
   "displayName": "SecureCommit",
   "description": "",
-  "version": "0.0.4",
+  "version": "0.5.0",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -20,6 +20,18 @@
       {
         "command": "securecommit.scanWorkspace",
         "title": "SecureCommit : Scan Workspace"
+      }
+    ],
+    "colors": [
+      {
+        "id": "securecommit.customPurple",
+        "description": "Purple color for file decoration.",
+        "defaults": {
+          "dark": "#b15efa",
+          "light": "#a020f0",
+          "highContrast": "#bd83f0",
+          "highContrastLight": "#651597"
+        }
       }
     ]
   },

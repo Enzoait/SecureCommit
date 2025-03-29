@@ -2,12 +2,21 @@ import * as vscode from "vscode";
 import packageJson from "../package.json";
 import { FileDecorationProvider } from "./providers/FileDecorationProvider";
 import { fileExtensions } from "./constants/FileConstants";
+import { getWorkspaceFolders } from "./funcs/getWorkspacefolders";
+import { writeFlaggedFilesPathsInSummaryFile } from "./funcs/writeFlaggedFilesPathsInSummaryFile";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('"securecommit" is now active!');
 
   var provider = new FileDecorationProvider();
   vscode.window.registerFileDecorationProvider(provider);
+
+  const workspaceFolders: readonly vscode.WorkspaceFolder[] | undefined =
+    getWorkspaceFolders();
+
+  if (workspaceFolders == undefined) return;
+
+  const activeWorkspacePath: string = workspaceFolders[0].uri.fsPath;
 
   // The commandId parameter must match the command field in package.json
   const disposable = vscode.commands.registerCommand(
@@ -16,16 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage(
         "Secure Commit : Scanning workspace..."
       );
-      const workspaceFolders: readonly vscode.WorkspaceFolder[] | undefined =
-        vscode.workspace.workspaceFolders;
-      if (workspaceFolders == undefined) {
-        vscode.window.showInformationMessage(
-          "No workspace found. You need to open a folder to use SecureCommit."
-        );
-        return;
-      }
-
-      const activeWorkspacePath : string = workspaceFolders[0].uri.fsPath;
+      
       const workspaceRoot : string = activeWorkspacePath.split("\\").reverse()[0]
 
       console.log(`Root : ${workspaceRoot}`);
@@ -35,13 +35,14 @@ export function activate(context: vscode.ExtensionContext) {
         "**/node_modules/**"
       );
 
-      provider.refresh(files, workspaceRoot, activeWorkspacePath);
+      const flaggedFiles = provider.refreshAndGetFlaggedFiles(files, workspaceRoot, activeWorkspacePath);
+      writeFlaggedFilesPathsInSummaryFile(flaggedFiles, workspaceFolders)
     }
   );
 
   const disposable2 = vscode.commands.registerCommand(
     "securecommit.secureCommit",
-    () => {
+    async () => {
       vscode.window.showInformationMessage(
         `Secure Commit version : ${packageJson.version}`
       );
