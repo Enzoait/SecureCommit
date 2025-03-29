@@ -15,8 +15,8 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
   ): vscode.ProviderResult<vscode.FileDecoration> {
     if (this._flaggedFiles.has(uri.fsPath)) {
       return {
-        badge: "⚠️",
-        color: new vscode.ThemeColor("errorForeground"),
+        badge: "🔑",
+        color: new vscode.ThemeColor("securecommit.customPurple"),
         tooltip:
           "Secure Commit : This file contains sensitive information. Consider checking for any secrets that shouldn't be committed.",
       };

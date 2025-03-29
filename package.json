@@ -21,6 +21,18 @@
         "command": "securecommit.scanWorkspace",
         "title": "SecureCommit : Scan Workspace"
       }
+    ],
+    "colors": [
+      {
+        "id": "securecommit.customPurple",
+        "description": "Couleur violette pour la décoration des fichiers.",
+        "defaults": {
+          "dark": "#b15efa",
+          "light": "#a020f0",
+          "highContrast": "#bd83f0",
+          "highContrastLight": "#651597"
+        }
+      }
     ]
   },
   "scripts": {

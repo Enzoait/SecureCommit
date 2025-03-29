@@ -9,6 +9,17 @@ export function activate(context: vscode.ExtensionContext) {
   var provider = new FileDecorationProvider();
   vscode.window.registerFileDecorationProvider(provider);
 
+  const workspaceFolders: readonly vscode.WorkspaceFolder[] | undefined =
+    vscode.workspace.workspaceFolders;
+  if (workspaceFolders == undefined) {
+    vscode.window.showInformationMessage(
+      "No workspace found. You need to open a folder to use SecureCommit."
+    );
+    return;
+  }
+
+  const activeWorkspacePath: string = workspaceFolders[0].uri.fsPath;
+
   // The commandId parameter must match the command field in package.json
   const disposable = vscode.commands.registerCommand(
     "securecommit.scanWorkspace",
@@ -16,16 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage(
         "Secure Commit : Scanning workspace..."
       );
-      const workspaceFolders: readonly vscode.WorkspaceFolder[] | undefined =
-        vscode.workspace.workspaceFolders;
-      if (workspaceFolders == undefined) {
-        vscode.window.showInformationMessage(
-          "No workspace found. You need to open a folder to use SecureCommit."
-        );
-        return;
-      }
-
-      const activeWorkspacePath : string = workspaceFolders[0].uri.fsPath;
+      
       const workspaceRoot : string = activeWorkspacePath.split("\\").reverse()[0]
 
       console.log(`Root : ${workspaceRoot}`);
@@ -36,15 +38,27 @@ export function activate(context: vscode.ExtensionContext) {
       );
 
       provider.refresh(files, workspaceRoot, activeWorkspacePath);
+
     }
   );
 
   const disposable2 = vscode.commands.registerCommand(
     "securecommit.secureCommit",
-    () => {
+    async () => {
       vscode.window.showInformationMessage(
         `Secure Commit version : ${packageJson.version}`
       );
+
+      console.log("TEST TEST : ", workspaceFolders[0].uri.toString());
+
+      const summaryFileUri : vscode.Uri = vscode.Uri.parse(`${workspaceFolders[0].uri.toString()}/SECURE_COMMIT_FLAGGED_FILES.txt`);
+
+      const text = "salut test 123";
+      const content: Uint8Array = new TextEncoder().encode(text);
+
+      console.log("URIIII", summaryFileUri.toString());
+      
+      vscode.workspace.fs.writeFile(summaryFileUri, content);
     }
   );
 
