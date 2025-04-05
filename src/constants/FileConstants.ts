@@ -1,1 +1,1 @@
-export const fileExtensions = "env,txt,md,mdx,c,cpp,cc,h,rs,go,java,kt,kts,scala,cs,py,rb,php,pl,pm,sh,js,mjs,ts,dart,ex,exs,erl,beam,hs,clj,cljs,cljc,fs,fsi,fsx";
+export const fileExtensions = "env,txt,md,mdx,d,c,cpp,cc,h,rs,go,java,kt,kts,scala,cs,py,rb,php,pl,pm,sh,js,mjs,ts,dart,ex,exs,erl,beam,hs,clj,cljs,cljc,fs,fsi,fsx";

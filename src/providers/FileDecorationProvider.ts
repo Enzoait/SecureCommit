@@ -48,8 +48,6 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
 
     const gitignoreContent = fs.readFileSync(gitignore, "utf-8");
 
-    console.log("GITIGNORE CONTENT", gitignoreContent);
-
     for (const file of files) {
       try {
         const content = fs.readFileSync(file.fsPath, "utf-8");
@@ -57,11 +55,6 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
         var fileAndFolderRelativePath: string[] = getFileRelativePath(
           file.fsPath,
           workspaceRoot
-        );
-
-        console.log(
-          "File and folder relative path : ",
-          fileAndFolderRelativePath
         );
 
         var fileRelativePath = fileAndFolderRelativePath[0]

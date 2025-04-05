@@ -18,8 +18,6 @@ export function getFolders(
     }
   }
 
-  console.log(reversedFolderPath);
-
   reversedFolderPath.reverse().forEach((folder) => {
     activeWorkspacePath += `\\${folder}`;
     folderPathsList.add(vscode.Uri.file(activeWorkspacePath));
