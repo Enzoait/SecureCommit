@@ -1,6 +1,8 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import { getFolders } from "../funcs/getFolders";
+import { getFileRelativePath } from "../funcs/getFileRelativePath";
+import { isIgnored } from "../funcs/isIgnored";
 
 export class FileDecorationProvider implements vscode.FileDecorationProvider {
   private _onDidChangeFileDecorations = new vscode.EventEmitter<
@@ -27,20 +29,52 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
 
   refreshAndGetFlaggedFiles(
     files: vscode.Uri[],
+    gitignore: string,
     workspaceRoot: string,
     activeWorkspacePath: string
   ): Set<string> {
-    const previousFlaggedFiles = new Set(this._flaggedFilesAndFolders); // Sauvegarde l'ancien état
+    // Sauvegarde l'ancien état
+    const previousFlaggedFilesAndFolders = new Set(
+      this._flaggedFilesAndFolders
+    );
     this._flaggedFilesAndFolders.clear();
+    const previousFlaggedFilesWithoutFolders = new Set(
+      this._flaggedFilesWithoutFolders
+    );
+    this._flaggedFilesWithoutFolders.clear();
 
     let sensitiveFiles = 0;
     let flaggedFoldersList = new Set<vscode.Uri>();
+
+    const gitignoreContent = fs.readFileSync(gitignore, "utf-8");
+
+    console.log("GITIGNORE CONTENT", gitignoreContent);
 
     for (const file of files) {
       try {
         const content = fs.readFileSync(file.fsPath, "utf-8");
 
-        if (content.includes("secure-commit")) {
+        var fileAndFolderRelativePath: string[] = getFileRelativePath(
+          file.fsPath,
+          workspaceRoot
+        );
+
+        console.log(
+          "File and folder relative path : ",
+          fileAndFolderRelativePath
+        );
+
+        var fileRelativePath = fileAndFolderRelativePath[0]
+
+        const gitignoreLines = gitignoreContent
+          .split(/\r?\n/)                                 // Split par ligne 
+          .map(line => line.trim())                       // Supprime les espaces inutiles
+          .filter(line => line && !line.startsWith('#')); // Ignore lignes vides et commentaires
+
+        if (
+          content.includes("secure-commit") &&
+          !isIgnored(fileRelativePath, gitignoreLines)
+        ) {
           this._flaggedFilesAndFolders.add(file.fsPath);
           flaggedFoldersList = getFolders(
             file.fsPath,
@@ -70,9 +104,14 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
     }
 
     // Récupèration des fichiers qui n'ont plus "secure-commit"
-    const removedFiles = new Set(
-      [...previousFlaggedFiles].filter(
+    const removedFilesAndFolders = new Set(
+      [...previousFlaggedFilesAndFolders].filter(
         (f) => !this._flaggedFilesAndFolders.has(f)
+      )
+    );
+    const removedFilesWithoutFolders = new Set(
+      [...previousFlaggedFilesWithoutFolders].filter(
+        (f) => !this._flaggedFilesWithoutFolders.has(f)
       )
     );
 
@@ -83,7 +122,15 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
       urisToRefresh.add(vscode.Uri.file(filePath));
     });
 
-    removedFiles.forEach((filePath) => {
+    removedFilesAndFolders.forEach((filePath) => {
+      urisToRefresh.add(vscode.Uri.file(filePath));
+    });
+
+    this._flaggedFilesWithoutFolders.forEach((filePath) => {
+      urisToRefresh.add(vscode.Uri.file(filePath));
+    });
+
+    removedFilesWithoutFolders.forEach((filePath) => {
       urisToRefresh.add(vscode.Uri.file(filePath));
     });
 

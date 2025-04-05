@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### To Be Added
 
-- Files that are in `.gitignore` detection
 - Jsdoc
 - `README.md` redaction
 - Files without extension compatibility (after 1.0.0 release)
@@ -19,6 +18,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 
 
 ### To Be Removed
+
+- 
+
+## [0.9.0] - 2023-04-06
+
+### Added
+
+- Files that are in `.gitignore` detection
+
+### Fixed
+
+- Fixed file summary generation that kept adding file paths even after secure-commit was removed
+
+### Changed
+
+- Few var names changes
+
+### Removed
 
 - 
 

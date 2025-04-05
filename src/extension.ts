@@ -4,6 +4,7 @@ import { FileDecorationProvider } from "./providers/FileDecorationProvider";
 import { fileExtensions } from "./constants/FileConstants";
 import { getWorkspaceFolders } from "./funcs/getWorkspacefolders";
 import { writeFlaggedFilesPathsInSummaryFile } from "./funcs/writeFlaggedFilesPathsInSummaryFile";
+import { copyFileSync } from "fs";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('"securecommit" is now active!');
@@ -25,8 +26,10 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage(
         "Secure Commit : Scanning workspace..."
       );
-      
-      const workspaceRoot : string = activeWorkspacePath.split("\\").reverse()[0]
+
+      const workspaceRoot: string = activeWorkspacePath
+        .split("\\")
+        .reverse()[0];
 
       console.log(`Root : ${workspaceRoot}`);
 
@@ -35,8 +38,19 @@ export function activate(context: vscode.ExtensionContext) {
         "**/node_modules/**"
       );
 
-      const flaggedFiles = provider.refreshAndGetFlaggedFiles(files, workspaceRoot, activeWorkspacePath);
-      writeFlaggedFilesPathsInSummaryFile(flaggedFiles, workspaceFolders)
+      const gitignore: vscode.Uri[] = await vscode.workspace.findFiles(
+        `**/.gitignore`
+      );
+
+      console.log(gitignore[0].fsPath);
+
+      const flaggedFiles = provider.refreshAndGetFlaggedFiles(
+        files,
+        gitignore[0].fsPath,
+        workspaceRoot,
+        activeWorkspacePath
+      );
+      writeFlaggedFilesPathsInSummaryFile(flaggedFiles, workspaceFolders);
     }
   );
 
