@@ -2,13 +2,15 @@
   "name": "securecommit",
   "displayName": "SecureCommit",
   "icon": "images/securecommitlogo.png",
+  "repository": "https://github.com/Enzoait/SecureCommit",
+  "license": "Polyform-Strict-1.0.0",
   "description": "",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.98.0"
   },
   "categories": [
-    "Other"
+    "Linters"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",

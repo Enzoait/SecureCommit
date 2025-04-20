@@ -8,19 +8,19 @@ SecureCommit is an extension that helps you avoid letting sensitive info appeari
 
 Start by writing a simple comment or text next to the line containing the sensitive info you don't want to appear in your next commit.
 
-[Write a comment](images/step1.gif)
+![Write a comment](images/step1.gif)
 
 ### Run `Scan Workspace` command
 
 Once you're done writing your code, before you commit your changes, quickly run the `Scan Workspace` command to find any secrets that shouldn't appear in your commit.
 
-[Scan Workspace](images/step2.gif)
+![Scan Workspace](images/step2.gif)
 
 ### Open the generated file
 
 If any `secure-commit` text/comment is found anywhere in the workspace, the files containing the text/comment will be added to a generated file `SECURE_COMMIT_FLAGGED_FILES.md`
 
-[Opening generated file](images/step3.gif)
+![Opening generated file](images/step3.gif)
 
 > Tip: Adding a file or folder to a `.gitignore` file will prevent the said file/folder to be flagged by the `Scan Workspace` command.
 
