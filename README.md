@@ -38,9 +38,9 @@ Flagged files should appear purple in the view but the color doesn't change.
 
 ## Release Notes
 
-### 1.0.1
+### 1.0.2
 
-Added a new know issue. More info can be found in `CHANGELOG.md`
+Added a description. More info can be found in `CHANGELOG.md`
 
 ---
 
