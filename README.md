@@ -32,15 +32,15 @@ If any `secure-commit` text/comment is found anywhere in the workspace, the file
 
 ## Known Issues
 
-There's currently no known issues ! 
+Flagged files should appear purple in the view but the color doesn't change.
 
 > If you run into any problem using Secure Commit, feel free to send me an email or open an issue on the public repository.
 
 ## Release Notes
 
-### 1.0.0
+### 1.0.1
 
-Initial release. More info can be found in `CHANGELOG.md`
+Added a new know issue. More info can be found in `CHANGELOG.md`
 
 ---
 

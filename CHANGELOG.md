@@ -15,13 +15,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### To Be Changed
 
-- 
+- Fix of the known issue
 
 ### To Be Removed
 
 - 
 
-## [1.0.0] - 2023-04-06
+## [1.0.1] - 2023-04-21
+
+### Added
+
+- New known issue
+
+### Fixed
+
+- 
+
+### Changed
+
+- 
+
+### Removed
+
+- 
+
+## [1.0.0] - 2025-04-21
 
 ### Added
 
@@ -41,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 
 
-## [0.9.0] - 2023-04-06
+## [0.9.0] - 2025-04-06
 
 ### Added
 
@@ -59,7 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 
 
-## [0.5.0] - 2023-03-29
+## [0.5.0] - 2025-03-29
 
 ### Added
 
@@ -81,7 +99,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 - 
 
-## [0.0.5] - 2023-03-23
+## [0.0.5] - 2025-03-23
 
 ### Added
 
@@ -99,7 +117,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 - 
 
-## [0.0.4] - 2023-03-23
+## [0.0.4] - 2025-03-23
 
 ### Added
 
@@ -119,7 +137,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 - 
 
-## [0.0.3] - 2023-03-22
+## [0.0.3] - 2025-03-22
 
 ### Added
 
@@ -137,7 +155,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 - 
 
-## [0.0.2] - 2023-03-22
+## [0.0.2] - 2025-03-22
 
 ### Added
 
@@ -155,7 +173,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 - 
 
-## [0.0.1] - 2023-03-12
+## [0.0.1] - 2025-03-12
 
 ### Added
 
