@@ -1,83 +1,55 @@
 # SecureCommit
 
-This is the README for your extension "securecommit". After writing up a brief description, we recommend including the following sections.
-
-## TODO
-
-- Faire en sorte que les fichiers présents dans gitignore ne soient pas flaggés, même si ils contiennent le texte "secure-commit" (v0.2)
-- Eventuellement chercher d'autres couleurs pour les fichiers que :
-```ts
-color: new vscode.ThemeColor("errorForeground")
-```
-- Rédiger la jsdoc des méthodes
-- Rédiger le README
-- Sortir la version 1.0
-- Ajouter plus de types de fichiers supportés (v1.1)
+SecureCommit is an extension that helps you avoid letting sensitive info appearing in your commits. Wether you're a beginner or an experienced programmer, I hope this extension will help you not letting any sensitive info be commited.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Write a simple comment
 
-For example if there is an image subfolder under your extension project workspace:
+Start by writing a simple comment or text next to the line containing the sensitive info you don't want to appear in your next commit.
 
-\!\[feature X\]\(images/feature-x.png\)
+[Write a comment](images/step1.gif)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Run `Scan Workspace` command
 
-## Requirements
+Once you're done writing your code, before you commit your changes, quickly run the `Scan Workspace` command to find any secrets that shouldn't appear in your commit.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+[Scan Workspace](images/step2.gif)
 
-## Extension Settings
+### Open the generated file
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+If any `secure-commit` text/comment is found anywhere in the workspace, the files containing the text/comment will be added to a generated file `SECURE_COMMIT_FLAGGED_FILES.md`
 
-For example:
+[Opening generated file](images/step3.gif)
 
-This extension contributes the following settings:
+> Tip: Adding a file or folder to a `.gitignore` file will prevent the said file/folder to be flagged by the `Scan Workspace` command.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Extension commands
+
+`Scan Workspace` : Scans the current workspace to find any file containing secrets and generates a markdown file listing all files and folders containing sensitive info.
+
+`Version` : Opens an information message displaying the current version of Secure Commit.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+There's currently no known issues ! 
+
+> If you run into any problem using Secure Commit, feel free to send me an email or open an issue on the public repository.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release. More info can be found in `CHANGELOG.md`
 
 ---
 
-## Following extension guidelines
+## Useful links
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+[GitHub Repository](https://github.com/Enzoait/SecureCommit)
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+[Open an issue](https://github.com/Enzoait/SecureCommit/issues/new)
 
-## Working with Markdown
+[My Linked-In](https://www.linkedin.com/in/enzo-ait-yakoub-a19254231/)
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[Contact me](mailto:enzo.aityakoub@gmail.com)

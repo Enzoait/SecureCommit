@@ -1,6 +1,7 @@
 {
   "name": "securecommit",
   "displayName": "SecureCommit",
+  "icon": "images/securecommitlogo.png",
   "description": "",
   "version": "0.5.0",
   "engines": {
