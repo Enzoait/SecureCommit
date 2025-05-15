@@ -2,6 +2,10 @@ export function isIgnored(
   fileRelativePath: string,
   gitignoreLines: string[]
 ): boolean {
+  if (!gitignoreLines[0]) {
+    return false;
+  }
+
   const parts = fileRelativePath.split("/");
 
   for (let i = 0; i < parts.length - 1; i++) {

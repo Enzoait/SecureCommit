@@ -19,9 +19,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### To Be Removed
 
-- 
+-
 
-## [1.0.2] - 2023-04-21
+## [1.0.4] - 2025-05-15
+
+### Added
+
+-
+
+### Fixed
+
+- fixed an issue where an error occured if no gitignore file was found.
+
+### Changed
+
+-
+
+### Removed
+
+-
+
+## [1.0.3] - 2025-05-15
+
+### Added
+
+- tags
+
+### Fixed
+
+-
+
+### Changed
+
+-
+
+### Removed
+
+-
+
+## [1.0.2] - 2025-04-21
 
 ### Added
 
@@ -29,17 +65,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
-- 
+-
 
 ### Removed
 
-- 
+-
 
-## [1.0.1] - 2023-04-21
+## [1.0.1] - 2025-04-21
 
 ### Added
 
@@ -47,15 +83,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
-- 
+-
 
 ### Removed
 
-- 
+-
 
 ## [1.0.0] - 2025-04-21
 
@@ -67,15 +103,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
-- 
+-
 
 ### Removed
 
-- 
+-
 
 ## [0.9.0] - 2025-04-06
 
@@ -93,7 +129,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- 
+-
 
 ## [0.5.0] - 2025-03-29
 
@@ -103,19 +139,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
 - Changed color for detected files
+
 ```ts
-color: new vscode.ThemeColor("securecommit.customPurple")
+color: new vscode.ThemeColor("securecommit.customPurple");
 ```
+
 - Updated warning message for flagged files
 
 ### Removed
 
-- 
+-
 
 ## [0.0.5] - 2025-03-23
 
@@ -125,7 +163,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
@@ -133,37 +171,37 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 ### Removed
 
-- 
+-
 
 ## [0.0.4] - 2025-03-23
 
 ### Added
 
 - Moved file extensions to a constant
-- Added version retrieving from `package.json` 
+- Added version retrieving from `package.json`
 - Added markdown file compatibility
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
-- 
+-
 
 ### Removed
 
-- 
+-
 
 ## [0.0.3] - 2025-03-22
 
 ### Added
 
-- Sensitive files detection 
+- Sensitive files detection
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
@@ -171,7 +209,7 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 ### Removed
 
-- 
+-
 
 ## [0.0.2] - 2025-03-22
 
@@ -181,15 +219,15 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
-- 
+-
 
 ### Removed
 
-- 
+-
 
 ## [0.0.1] - 2025-03-12
 
@@ -202,12 +240,12 @@ color: new vscode.ThemeColor("securecommit.customPurple")
 
 ### Fixed
 
-- 
+-
 
 ### Changed
 
-- 
+-
 
 ### Removed
 
-- 
+-

@@ -46,7 +46,12 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
     let sensitiveFiles = 0;
     let flaggedFoldersList = new Set<vscode.Uri>();
 
-    const gitignoreContent = fs.readFileSync(gitignore, "utf-8");
+    var gitignoreContent: string;
+    if (gitignore != "null") {
+      gitignoreContent = fs.readFileSync(gitignore, "utf-8");
+    } else {
+      gitignoreContent = gitignore;
+    }
 
     for (const file of files) {
       try {
@@ -57,12 +62,17 @@ export class FileDecorationProvider implements vscode.FileDecorationProvider {
           workspaceRoot
         );
 
-        var fileRelativePath = fileAndFolderRelativePath[0]
-
-        const gitignoreLines = gitignoreContent
-          .split(/\r?\n/)                                 // Split par ligne 
-          .map(line => line.trim())                       // Supprime les espaces inutiles
-          .filter(line => line && !line.startsWith('#')); // Ignore lignes vides et commentaires
+        var fileRelativePath = fileAndFolderRelativePath[0];
+        var gitignoreLines : string[];
+        if (gitignoreContent != "null"){
+          gitignoreLines = gitignoreContent
+            .split(/\r?\n/) // Split par ligne
+            .map((line) => line.trim()) // Supprime les espaces inutiles
+            .filter((line) => line && !line.startsWith("#")); // Ignore lignes vides et commentaires
+        }
+        else {
+          gitignoreLines = []
+        }
 
         if (
           content.includes("secure-commit") &&

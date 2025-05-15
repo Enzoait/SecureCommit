@@ -42,14 +42,23 @@ export function activate(context: vscode.ExtensionContext) {
         `**/.gitignore`
       );
 
-      console.log(gitignore[0].fsPath);
+      var flaggedFiles: Set<string>;
 
-      const flaggedFiles = provider.refreshAndGetFlaggedFiles(
-        files,
-        gitignore[0].fsPath,
-        workspaceRoot,
-        activeWorkspacePath
-      );
+      if (!gitignore[0]) {
+        flaggedFiles = provider.refreshAndGetFlaggedFiles(
+          files,
+          "null",
+          workspaceRoot,
+          activeWorkspacePath
+        );
+      } else {
+        flaggedFiles = provider.refreshAndGetFlaggedFiles(
+          files,
+          gitignore[0].fsPath,
+          workspaceRoot,
+          activeWorkspacePath
+        );
+      }
       writeFlaggedFilesPathsInSummaryFile(flaggedFiles, workspaceFolders);
     }
   );
