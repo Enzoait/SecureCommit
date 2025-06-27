@@ -2,6 +2,8 @@
 
 SecureCommit is an extension that helps you avoid letting sensitive info appearing in your commits. Wether you're a beginner or an experienced programmer, I hope this extension will help you not letting any sensitive info be commited.
 
+See more : https://secure-commit-website.vercel.app/
+
 ## Features
 
 ### Write a simple comment
@@ -47,6 +49,8 @@ Added a description. More info can be found in `CHANGELOG.md`
 ## Useful links
 
 [GitHub Repository](https://github.com/Enzoait/SecureCommit)
+
+[Official Website](https://secure-commit-website.vercel.app/)
 
 [Open an issue](https://github.com/Enzoait/SecureCommit/issues/new)
 
