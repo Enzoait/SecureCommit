@@ -10,14 +10,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### To Be Added
 
 - Jsdoc
-- `README.md` redaction
-- Files without extension compatibility (after 1.0.0 release)
 
 ### To Be Changed
 
 - Fix of the known issue
 
 ### To Be Removed
+
+-
+
+## [1.0.5] - 2025-06-27
+
+### Added
+
+- Official website link added to readme
+
+### Fixed
+
+- 
+
+### Changed
+
+-
+
+### Removed
 
 -
 
